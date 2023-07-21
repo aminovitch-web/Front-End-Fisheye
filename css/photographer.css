@@ -1,3 +1,8 @@
+:root {
+    --colorHeader: #d3573c;
+  }
+  
+
 #contact_modal {
     display: none;
 }
@@ -9,6 +14,24 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
+}
+.photograph__infos {
+    margin-left:14px;
+    display:flex;
+    flex-direction: column;
+}
+.photograph__infos h2{
+    color: var(--colorHeader);
+    font-size:65px;
+    margin-bottom:9px;
+}
+.photograph__infos span{
+    color:brown;
+    font-size:20px;
+}
+.photograph__infos p{
+    color: grey;
+    font-size:9px;
 }
 
 .contact_button {
