@@ -1,35 +1,45 @@
-function photographersFactory(data){
+const photographersFactory = (data) => {
+    const { name, id, city, country, tagline, price, portrait } = data;
+    const picture = `assets/photographers/${portrait}`;
 
-     //destructuration 
+    function getUserCardDOM() {
+        const article = document.createElement('article');
+        article.classList.add("card");
 
-     const {id, city, country, tagline, price, name, portrait } = data;
-   
-     //assigner constante img  avec literaux de gabarit
+        const img = document.createElement('img');
+        img.setAttribute("src", picture);
 
-     const picture = `assets/photographers/${portrait}`;
+        const photographeNameElement = document.createElement('h2');
+        photographeNameElement.classList.add("card__photographeName");
+        photographeNameElement.textContent = name;
 
-     // article photographe avec toute les infos
+        const cityElement = document.createElement('p');
+        cityElement.classList.add("card__city");
+        cityElement.textContent = city;
 
-     var article =` <article class="photographer">
-     <a href="./photographer.html?id=${id}" class="photographer__header" aria-label="${name}">
-         <img class="photographer__img" src="${picture}" alt="${name}">
-         <h2 class="photographer__name">${name}</h2>
-     </a>
-     <div class="photographer__content" role ="Text paragraph">
-         <p class="photographer__location">${city}, ${country}</p>
-         <p class="photographer__tagline">${tagline}</p>
-         <p class="photographer__price">${price}€/jour</p>
-     </div>
-     <div>`;
- }
-// page profil  
- function mediaFactory(data){
+        const tagLineElement = document.createElement('p');
+        tagLineElement.classList.add("card__tagline");
+        tagLineElement.textContent = tagline;
 
- }
+        const priceElement = document.createElement('p');
+        priceElement.classList.add("card__price");
+        priceElement.textContent = price;
 
- function getTotalLike(){
+        // Ajout des éléments dans l'article
+        article.appendChild(img);
+        article.appendChild(photographeNameElement); // Utiliser photographeNameElement ici
+        article.appendChild(cityElement);
+        article.appendChild(tagLineElement);
+        article.appendChild(priceElement);
+
+        return article;
+    }
+
+    return { name, id, city, country, tagline, price, portrait, getUserCardDOM };
+}
+
+const photographersProfilFactory = (data) => {
 
 
- }
-
- export { photographersFactory };
+    
+}

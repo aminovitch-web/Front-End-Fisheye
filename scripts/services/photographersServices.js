@@ -1,4 +1,4 @@
-async function getAllData(){
+async function getAllDataServices(){
  
 const URL = "../../data/photographers.json";
 
