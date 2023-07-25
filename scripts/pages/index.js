@@ -11,7 +11,6 @@ const getPhotographers = async () => {
 const displayData = async (photographers) => {
   const photographersSection = document.querySelector(".photographer_section");
 
-  // Assurez-vous que photographers est un tableau
   const photographerArray = Array.isArray(photographers)
     ? photographers
     : Object.values(photographers);

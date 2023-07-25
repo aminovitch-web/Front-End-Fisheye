@@ -25,9 +25,8 @@ const photographersFactory = (data) => {
         priceElement.classList.add("card__price");
         priceElement.textContent = price+" €";
 
-        // Ajout des éléments dans l'article
         article.appendChild(img);
-        article.appendChild(photographeNameElement); // Utiliser photographeNameElement ici
+        article.appendChild(photographeNameElement); 
         article.appendChild(cityElement);
         article.appendChild(tagLineElement);
         article.appendChild(priceElement);

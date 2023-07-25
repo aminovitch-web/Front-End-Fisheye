@@ -5,7 +5,6 @@ body {
     margin: 0;
 }
 
-
 header {
     display: flex;
     flex-direction: row;
@@ -15,7 +14,7 @@ header {
 }
 
 h1 {
-    color: #901C1C;
+    color: #901c1c;
     margin-right: 100px;
 }
 
@@ -40,11 +39,27 @@ h1 {
 }
 
 .photographer_section article h2 {
-    color: #D3573C;
+    color: #d3573c;
     font-size: 36px;
 }
 
 .photographer_section article img {
-    height: 200px;
-    width: 200px;
+    height: 20rem;
+    width: 20rem;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1em;
+}
+.card__photographName{
+    color: rgb(215, 102, 77);
+}
+.card__city{
+    color: rgb(227, 112, 112);
+}
+.card__tagLine{
+    color: rgb(232, 230, 227);
+}
+.card__price{
+    color: rgb(158, 150, 137);
 }
