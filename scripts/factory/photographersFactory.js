@@ -8,7 +8,7 @@ const photographersFactory = (data) => {
   
       const photographerLinkElement = document.createElement("a");
       photographerLinkElement.classList.add("card__link");
-      photographerLinkElement.setAttribute("href", `pages/photographer.html?id=${id}`);
+      photographerLinkElement.setAttribute("href", `photographer.html?id=${id}`);
       photographerLinkElement.setAttribute("aria-label", `Lien vers le portfolio de ${name}`);
   
       const photographerImgElement = document.createElement("img");
