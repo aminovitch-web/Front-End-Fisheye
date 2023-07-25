@@ -1,24 +1,39 @@
 const getPhotographers = async () => {
-
-  const photographersJson = await getAllDataService();
-  return (photographersJson);
+  try {
+    const photographersJson = await getAllDataService();
+    return photographersJson;
+  } catch (error) {
+    console.error("Erreur lors de la récupération des photographes :", error);
  
+  }
+};
 
-}
-
-async function displayData(photographers) {
+const displayData = async (photographers) => {
   const photographersSection = document.querySelector(".photographer_section");
 
-  photographers.forEach((photographer) => {
-    const photographerCard = photographersFactory(photographer);
-    photographersSection.insertAdjacentHTML("beforeend", photographerCard);
-  });
-}
+  // Assurez-vous que photographers est un tableau
+  const photographerArray = Array.isArray(photographers)
+    ? photographers
+    : Object.values(photographers);
 
-async function init() {
-  // Récupère les datas des photographes
-  const { photographers } = await getPhotographers();
-  displayData(photographers);
-}
+  photographerArray.forEach((photographer) => {
+    const photographerModel = photographersFactory(photographer);
+    const userCardDOM = photographerModel.getUserCardDOM();
+    photographersSection.appendChild(userCardDOM);
+  });
+};
+
+
+const init = async () => {
+  try {
+    
+    const {photographers} = await getPhotographers();
+    displayData(photographers)
+    console.log(photographers);
+
+  } catch (error) {
+    console.error("Erreur lors de l'initialisation :", error);
+  }
+};
 
 init();

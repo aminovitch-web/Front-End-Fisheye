@@ -15,7 +15,7 @@ const photographersFactory = (data) => {
 
         const cityElement = document.createElement('p');
         cityElement.classList.add("card__city");
-        cityElement.textContent = city;
+        cityElement.textContent = city +", "+country;
 
         const tagLineElement = document.createElement('p');
         tagLineElement.classList.add("card__tagline");
@@ -23,7 +23,7 @@ const photographersFactory = (data) => {
 
         const priceElement = document.createElement('p');
         priceElement.classList.add("card__price");
-        priceElement.textContent = price;
+        priceElement.textContent = price+" €";
 
         // Ajout des éléments dans l'article
         article.appendChild(img);
