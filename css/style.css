@@ -1,5 +1,6 @@
 @import url("photographer.css");
 
+
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
@@ -42,26 +43,44 @@ h1 {
     color: #d3573c;
     font-size: 36px;
 }
-.card__link{
-    text-decoration:none;
+
+.card__link {
+    text-decoration: none;
 }
+
 .card__img {
-    height: 220px;
-    width: 220px;
+    height: 210px;
+    width: 210px;
     -o-object-fit: cover;
     object-fit: cover;
     border-radius: 50%;
-    
+    margin-left: 5px;
 }
-.card__photographName{
+
+.info {
+    display: flex;
+    flex-direction: column;
+    margin: 0px; 
+    gap: 1px; 
+
+}
+
+.card__photographName {
     color: rgb(215, 102, 77);
+    margin: 0; 
 }
-.card__city{
+
+.card__city {
     color: rgb(227, 112, 112);
+    margin: 0; 
 }
-.card__tagLine{
+
+.card__tagLine {
     color: rgb(232, 230, 227);
+    margin: 0; 
 }
-.card__price{
+
+.card__price {
     color: rgb(158, 150, 137);
+    margin: 0; 
 }

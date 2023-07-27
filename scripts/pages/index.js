@@ -17,7 +17,7 @@ const displayData = async (photographers) => {
 
   photographerArray.forEach((photographer) => {
     const photographerModel = photographersFactory(photographer);
-    const userCardDOM = photographerModel.getUserCardDOM();
+    const userCardDOM = photographerModel.getIndexPhotographerDOM();
     photographersSection.appendChild(userCardDOM);
   });
 };
