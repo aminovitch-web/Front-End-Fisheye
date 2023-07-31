@@ -12,7 +12,7 @@ async function getAllDataService() {
       }
     } catch (error) {
       console.error("Erreur lors de la récupération des données :", error);
-      return [];
+      return false;
   
     }
 
