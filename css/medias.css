@@ -1,0 +1,41 @@
+
+.medias {
+    margin: 100px;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 75px 100px;
+}
+
+.medias  a {
+    text-decoration: none;
+}
+
+.medias  article {
+    width: 350px;
+    height: 350px;
+}
+
+.medias img,
+.medias video {
+    cursor: pointer;
+    width: 350px;
+    height:350px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.medias div {
+    color: #901C1C;
+    font-size: 1.25em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.medias div button {
+    cursor: pointer;
+    color: #901C1C;
+    border: none;
+    background-color: transparent;
+    font-size: 1em;
+}

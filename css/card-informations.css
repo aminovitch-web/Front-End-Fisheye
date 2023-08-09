@@ -1,0 +1,16 @@
+.card-informations{
+width: 300px;
+position: fixed;
+bottom: 0;
+right: 2rem;
+padding: 15px 20px;
+font-weight: bold;
+background-color: #DB8876;
+border-radius: 10px 10px 0 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.card-informations span{
+    font-size:20px;
+}
