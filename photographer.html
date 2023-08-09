@@ -8,11 +8,11 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
-      <img src="assets/logo/logo.png" class="logo" />
+    <header aria-label="Lien vers la page d'accueil">
+      <img src="assets/logo/logo.png" class="logo" alt="Fisheye Logo" />
     </header>
     <main id="main">
-      <div class="photograph-header">
+      <div class="photograph-header" aria-label="information sur le photographe">
         <div class="photograph__infos">
           <h2>Mimi Keel</h2>
           <span>London, UK</span>
@@ -23,11 +23,11 @@
           <img src="assets/photographers/account.png"/>
         </div>
       </div>
-      <div class="filter">
+      <section class="dropdowns">
         <span> trier par :</span>
-      <select class="filterButton"  aria-label="Menu de tri">
-        <option class="filterButton__options" value="Popular">Popularité</option>
-        <option class="filterButton__options" value="Title">Titre</option>
+      <select class="dropdownsSelect"  aria-label="Menu de tri">
+        <option class="dropdownsSelect__options" value="Popular">Popularité</option>
+        <option class="dropdownsSelect__options" value="Title">Titre</option>
       </select>
     </div>
       </main>
@@ -35,16 +35,29 @@
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2>Contactez-moi mimi keel</h2>
+          <img  aria-label="fermer le formulaire" src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
+				<form method="post" action="photographer.html" aria-label="Formulaire de contact du photographe">
+          <div>
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" required aria-label="Indiquer son prénom" />
+          </div>
+          <div>
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="nom" required aria-label="Indiquer son nom" />
+          </div>
+          <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required aria-label="Indiquer son email" />
+          </div>
+          <div>
+              <label for="message">Votre message</label>
+              <textarea id="message" name="message" aria-label="Indiquer votre message"></textarea>
+          </div>
+          <button class="contact_button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
+      </form>
+      
 			</div>
 		</div>
     <script src="scripts/factory/photographersFactory.js"></script>
