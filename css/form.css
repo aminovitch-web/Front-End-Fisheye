@@ -1,50 +1,5 @@
-:root {
-    --colorHeader: #d3573c;
-  }
-  
-
 #contact_modal {
     display: none;
-}
-
-.photograph-header {
-    background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-.photograph__infos {
-    margin-left:14px;
-    display:flex;
-    flex-direction: column;
-}
-.photograph__infos h2{
-    color: var(--colorHeader);
-    font-size:65px;
-    margin-bottom:9px;
-}
-.photograph__infos span{
-    color:brown;
-    font-size:20px;
-}
-.photograph__infos p{
-    color: grey;
-    font-size:9px;
-}
-
-.contact_button {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: #901C1C;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 .modal {

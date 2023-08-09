@@ -1,5 +1,13 @@
-@import url("photographer.css");
-@import url("filterButton.css");
+@import url("photographerHeader.css");
+@import url("dropdowns.css");
+@import url("form.css");
+@import url("medias.css");
+@import url("card-informations.css");
+@import url("lightbox.css");
+
+:root {
+    --colorHeader: #d3573c;
+  }
 
 body {
     font-family: "DM Sans", sans-serif;
