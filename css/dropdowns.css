@@ -1,0 +1,25 @@
+.dropdowns {
+    margin-left: 100px;
+    margin-top:20px;
+}
+
+.dropdownsSelect {
+    width: 15rem;
+    height: 5rem;
+    background-color: #901c1c;
+    color: #ffffff;
+    font-size: 1.6rem;
+    text-align:center;
+    font-weight: 700;
+    border-radius: 0.3rem;
+    border: 0.2rem solid #901c1c;
+}
+
+.dropdownsSelect__options {
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.4rem;
+    background-color: #901c1c;
+    color: #ffffff;
+}
