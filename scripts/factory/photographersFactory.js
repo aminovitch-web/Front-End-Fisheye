@@ -47,6 +47,11 @@ const photographersFactory = (data) => {
     
       return article;
     }
+
+    function getPhotographerCardHeader(){
+
+      
+    }
     
     
   
