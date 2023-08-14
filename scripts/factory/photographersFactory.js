@@ -48,10 +48,45 @@ const photographersFactory = (data) => {
       return article;
     }
 
-    function getPhotographerCardHeader(){
-
-      
+    function getPhotographerCardHeader(photographerCardHeader) {
+      const photographInfos = document.createElement("div");
+      photographInfos.classList.add("photographInfos"); 
+    
+      const photographName = document.createElement("h2");
+      photographName.textContent = name; 
+      const photographCity = document.createElement("span");
+      photographCity.textContent = city; 
+      const photographTagLine = document.createElement("p");
+      photographTagLine.textContent = tagline; 
+    
+      const contactButton = document.createElement("button");
+      contactButton.classList.add("contact_button"); 
+    
+      const photographPortrait = document.createElement("div");
+      photographPortrait.classList.add("photograph__pictures"); 
+    
+      const photographImg = document.createElement("img");
+      photographImg.setAttribute("src", picture); 
+    
+      if(photographerCardHeader){
+    
+        photographInfos.appendChild(photographName);
+        photographInfos.appendChild(photographCity);
+        photographInfos.appendChild(photographTagLine);
+    
+        photographPortrait.appendChild(photographImg);
+    
+        photographerCardHeader.appendChild(photographInfos);
+        photographerCardHeader.appendChild(contactButton);
+        photographerCardHeader.appendChild(photographPortrait);
+    
+      } else {
+        console.log("erreur");
+      }
+    
+      return photographerCardHeader;
     }
+    
     
     
   
@@ -64,6 +99,7 @@ const photographersFactory = (data) => {
       price,
       portrait,
       getIndexPhotographerDOM,
+      getPhotographerCardHeader
     };
   };
 

@@ -48,17 +48,17 @@ const getMediaByPhotographer = async (id) => {
 }
 
 const displayPhotographHeaderData = async (photographerInformation) => {
-  let photographerCardHeader = document.querySelector(".photograph-header");
-  const photographerArray = Array.isArray(photographerInformation)
-    ? photographerInformation
-    : Object.values(photographerInformation);
-
-  photographerArray.forEach((photographerInfo) => {
-    const photographerModel = photographerFactory(photographerInfo);
-    const photographerCardHeaderElement = photographerModel.getPhotographerCardHeader(photographerInfo);
+  const photographerCardHeader = document.querySelector(".photograph-header");
+  const photographerModel = photographersFactory(photographerInformation);
+  const photographerCardHeaderElement = photographerModel.getPhotographerCardHeader(photographerCardHeader);
+  
+  if (photographerCardHeader) {
     photographerCardHeader.appendChild(photographerCardHeaderElement);
-  });
+  } else {
+    console.log("L'élément photograph-header n'a pas été trouvé dans le DOM.");
+  }
 }
+
 
 
 
@@ -76,7 +76,7 @@ const displayMedia = async (mediaPhotographer) => {
   });
 }
 
-const getTotalLikesCard = async(id) => {
+const getTotalLikesCard = async(id) => {   
     try{
     const photographersJson = await getAllDataService();
     const medias = photographersJson.media;
@@ -104,3 +104,4 @@ const init = async () => {
 
 }
 
+init();
