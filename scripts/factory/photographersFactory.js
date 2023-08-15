@@ -50,7 +50,7 @@ const photographersFactory = (data) => {
 
     function getPhotographerCardHeader(photographerCardHeader) {
       const photographInfos = document.createElement("div");
-      photographInfos.classList.add("photographInfos"); 
+      photographInfos.classList.add("photograph__infos"); 
     
       const photographName = document.createElement("h2");
       photographName.textContent = name; 
@@ -61,6 +61,8 @@ const photographersFactory = (data) => {
     
       const contactButton = document.createElement("button");
       contactButton.classList.add("contact_button"); 
+      const msgButton = document.createTextNode("contactez moi");
+      contactButton.appendChild(msgButton);
     
       const photographPortrait = document.createElement("div");
       photographPortrait.classList.add("photograph__pictures"); 

@@ -39,3 +39,11 @@
     cursor: pointer;
 }
 
+.photograph__pictures img{
+    height: 250px;
+    width: 250px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
