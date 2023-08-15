@@ -89,12 +89,59 @@ const getTotalLikesCard = async(id) => {
     }
 }
 
+const getPriceById = async (id) => {
+  try {
+    const photographerJson = await getAllDataService();
+    const photographers = photographerJson.photographers;
+
+    const photographer = photographers.find((p) => p.id === parseInt(id));
+
+    if (photographer) {
+      return photographer.price;
+    } else {
+      console.log("Error: Photographer not found");
+    }
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+const displayPhotographerCard = async (id) => {
+  try {
+    const totalLikes = await getTotalLikesCard(id);
+    const photographerPrice = await getPriceById(id);
+
+    const photographerCard = document.createElement("section");
+    photographerCard.classList.add("card-informations");
+    photographerCard.setAttribute("aria-label", "total like et prix");
+
+    const likesSpan = document.createElement("span");
+    likesSpan.textContent = `${totalLikes} ♥`;
+
+    const priceSpan = document.createElement("span");
+    priceSpan.textContent = `${photographerPrice}€ / jour`;
+
+    photographerCard.appendChild(likesSpan);
+    photographerCard.appendChild(priceSpan);
+
+    const cardSection = document.querySelector(".card"); 
+    cardSection.appendChild(photographerCard);
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 const init = async () => {
  try{
 
   const photographerInformation = await getPhotographerById(id);
   displayPhotographHeaderData(photographerInformation);
+  const mediaPhotographer = await getMediaByPhotographer(id);
+  displayMedia(mediaPhotographer);
+  displayPhotographerCard(parseInt(id));
   console.log(photographerInformation);
 
  } catch (error) {
@@ -105,3 +152,6 @@ const init = async () => {
 }
 
 init();
+
+
+

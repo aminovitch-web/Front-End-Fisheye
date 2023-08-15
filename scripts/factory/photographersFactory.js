@@ -61,6 +61,7 @@ const photographersFactory = (data) => {
     
       const contactButton = document.createElement("button");
       contactButton.classList.add("contact_button"); 
+      contactButton.id="contact_button";
       const msgButton = document.createTextNode("contactez moi");
       contactButton.appendChild(msgButton);
     

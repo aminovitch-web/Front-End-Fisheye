@@ -1,30 +1,54 @@
 const mediaFactory = (data) => {
+  const { id, photographerId, title, image, video, likes, date, price } = data;
 
-    const {id, photographerId, title, image, likes, date, price} = data;
+  let mediaType;
+  if (image) {
+    mediaType = "image";
+  } else if (video) {
+    mediaType = "video";
+  }
 
-    let mediaType;
-    if(image){
-      mediaType = "image";
-    }else if(video){
-        mediaType = "video";
+  function getMediaDom() {
+    const articleTag = document.createElement("article");
+    articleTag.classList.add("card");
+
+    if (mediaType === "image") {
+      const imgTag = document.createElement("img");
+      imgTag.setAttribute("src", image);
+      articleTag.appendChild(imgTag);
+    } else if (mediaType === "video") {
+      const videoTag = document.createElement("video");
+      videoTag.setAttribute("src", video);
+      videoTag.setAttribute("controls", "true"); 
+      articleTag.appendChild(videoTag);
     }
 
-    function getMediaDom(){
-         switch (mediaType) {
-            case "image":
-                console.log("image");
-                break;
-            case "video":
-                console.log("video");
-                break;
-        default:
-            console.log("media non pris en charge");
-         }
+    const divTag = document.createElement("div");
 
+    const titleTag = document.createElement("span");
+    titleTag.textContent = title;
+    divTag.appendChild(titleTag);
 
-    }
-     
+    const buttonTag = document.createElement("button");
+    buttonTag.classList.add("like");
+    buttonTag.setAttribute("aria-label", "bouton pour aimer");
+    buttonTag.textContent = `${likes} ♥`;
+    divTag.appendChild(buttonTag);
 
-    return id, photographerId, title, image, likes, date, price;
+    articleTag.appendChild(divTag);
 
-}
+    return articleTag;
+  }
+
+  return {
+    id,
+    photographerId,
+    title,
+    image,
+    video,
+    likes,
+    date,
+    price,
+    getMediaDom,
+  };
+};
