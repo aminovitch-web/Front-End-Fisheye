@@ -14,12 +14,12 @@ const mediaFactory = (data) => {
 
     if (mediaType === "image") {
       const imgTag = document.createElement("img");
-      imgTag.setAttribute("src", image);
+      imgTag.setAttribute("src", "assets/media/"+img); 
       articleTag.appendChild(imgTag);
     } else if (mediaType === "video") {
       const videoTag = document.createElement("video");
-      videoTag.setAttribute("src", video);
-      videoTag.setAttribute("controls", "true"); 
+      videoTag.setAttribute("src","assets/media/"+video);
+      videoTag.setAttribute("controls", "true");
       articleTag.appendChild(videoTag);
     }
 
@@ -38,6 +38,7 @@ const mediaFactory = (data) => {
     articleTag.appendChild(divTag);
 
     return articleTag;
+    
   }
 
   return {

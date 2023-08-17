@@ -14,11 +14,12 @@ const getPhotographerById = async (id) => {
     
     if (photographer) {
      
-      console.log("Photographer information:", photographer);
+
       
       return photographer;
     } else {
       console.log("Photographer not found with ID:", id);
+      window.location.href="index.html";
       return null;
     }
   } catch (error) {
@@ -28,24 +29,25 @@ const getPhotographerById = async (id) => {
 };
 
 const getMediaByPhotographer = async (id) => {
-    try{
-      const photographersJson = await getAllDataService();
-      const medias = photographersJson.media;
+  try {
+    const photographersJson = await getAllDataService();
+    const medias = photographersJson.media;
 
-      const mediasData = medias.find((m) => m.photographerId === parseInt(id));
+    const mediasData = medias.filter((m) => m.photographerId === parseInt(id));
 
-      if(mediasData){
-        console.log("media photograph:", mediasData);
-        return mediasData;
-      } else{
-        console.log("photographer not found", id);
-        return null;
-      }
-    }catch(error) {
-      console.log( error);
+    if (mediasData.length > 0) {
+      console.log("media photograph: :", mediasData);
+      return mediasData;
+    } else {
+      console.log("No media found for photographer", id);
       return null;
     }
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 }
+
 
 const displayPhotographHeaderData = async (photographerInformation) => {
   const photographerCardHeader = document.querySelector(".photograph-header");
@@ -54,6 +56,8 @@ const displayPhotographHeaderData = async (photographerInformation) => {
   
   if (photographerCardHeader) {
     photographerCardHeader.appendChild(photographerCardHeaderElement);
+
+    console.log(photographerCardHeader);
   } else {
     console.log("L'élément photograph-header n'a pas été trouvé dans le DOM.");
   }
@@ -62,19 +66,28 @@ const displayPhotographHeaderData = async (photographerInformation) => {
 
 
 
-
 const displayMedia = async (mediaPhotographer) => {
-  let mediaSection = document.querySelector(".medias");
-  const photographerArray = Array.isArray(mediaPhotographer)
-    ? mediaPhotographer
-    : Object.values(mediaPhotographer);
+  try {
+    const mediaSection = document.querySelector(".medias");
 
-  photographerArray.forEach((mediaPhotographer) => {
-    const photographerModel = mediaFactory(mediaPhotographer);
-    const photographerMedia = photographerModel.getMediaDom();
-    mediaSection.appendChild(photographerMedia);
-  });
-}
+    if (!mediaSection) {
+      console.log("La section .medias n'a pas été trouvée dans le DOM.");
+      return;
+    }
+
+    const photographerArray = Array.isArray(mediaPhotographer)
+      ? mediaPhotographer
+      : Object.values(mediaPhotographer);
+
+    photographerArray.forEach((mediaData) => {
+      const mediaModel = mediaFactory(mediaData);
+      const mediaDom = mediaModel.getMediaDom();
+      mediaSection.appendChild(mediaDom);
+    });
+  } catch (error) {
+    console.log("Erreur lors de l'affichage des médias :", error);
+  }
+};
 
 const getTotalLikesCard = async(id) => {   
     try{

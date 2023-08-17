@@ -1,6 +1,6 @@
 
 .medias {
-    margin: 100px;
+    margin: 50px;
     margin-top: 50px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -12,15 +12,15 @@
 }
 
 .medias  article {
-    width: 350px;
-    height: 350px;
+    width: 270px;
+    height: 270px;
 }
 
 .medias img,
 .medias video {
     cursor: pointer;
-    width: 350px;
-    height:350px;
+    width: 270px;
+    height:270px;
     object-fit: cover;
     border-radius: 5px;
 }

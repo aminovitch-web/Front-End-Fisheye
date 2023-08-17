@@ -64,7 +64,7 @@ const photographersFactory = (data) => {
       contactButton.id="contact_button";
       const msgButton = document.createTextNode("contactez moi");
       contactButton.appendChild(msgButton);
-    
+      initializeForm(contactButton,name);
       const photographPortrait = document.createElement("div");
       photographPortrait.classList.add("photograph__pictures"); 
     
