@@ -14,12 +14,12 @@ const mediaFactory = (data) => {
 
     if (mediaType === "image") {
       const imgTag = document.createElement("img");
-      imgTag.setAttribute("src", "assets/media/"+img); 
+      imgTag.setAttribute("src", "assets/media/"+image); 
       articleTag.appendChild(imgTag);
     } else if (mediaType === "video") {
       const videoTag = document.createElement("video");
       videoTag.setAttribute("src","assets/media/"+video);
-      videoTag.setAttribute("controls", "true");
+      videoTag.setAttribute("controls","");
       articleTag.appendChild(videoTag);
     }
 

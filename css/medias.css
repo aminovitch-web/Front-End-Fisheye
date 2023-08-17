@@ -12,15 +12,15 @@
 }
 
 .medias  article {
-    width: 270px;
-    height: 270px;
+    width: 350px;
+    height: 350px;
 }
 
 .medias img,
 .medias video {
     cursor: pointer;
-    width: 270px;
-    height:270px;
+    width: 350px;
+    height:350px;
     object-fit: cover;
     border-radius: 5px;
 }
