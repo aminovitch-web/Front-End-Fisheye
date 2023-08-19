@@ -173,7 +173,7 @@ const init = async () => {
             console.log(selectedOption);
             displayMedia(mediaPhotographer, selectedOption);
         });
-        displayMedia(mediaPhotographer, "title");
+        displayMedia(mediaPhotographer, "popular");
         displayPhotographerCard(parseInt(id));
         console.log(photographerInformation);
     } catch (error) {

@@ -8,6 +8,8 @@ const mediaFactory = (data) => {
     mediaType = "video";
   }
 
+
+
   function getMediaDom() {
     const articleTag = document.createElement("article");
     articleTag.classList.add("card");
