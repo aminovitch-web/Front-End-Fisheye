@@ -7,7 +7,7 @@ const initializeForm = (contactButton,name) => {
     const displayModal = () => {
         contactButton.addEventListener("click", () => {
             modal.style.display = "block";
-            informationContact.textContent ="Contactez moi" + name;
+            informationContact.innerHTML ="Contactez-moi </br>" + name;
             document.body.style.overflow = "hidden"; 
             document.getElementById("main").style.filter = "blur(40px)";
         });

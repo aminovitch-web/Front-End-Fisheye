@@ -65,11 +65,11 @@ const displayPhotographHeaderData = async (photographerInformation) => {
 const filterMedia = (media, filter) => {
     
     switch (filter) {
-        case "title":
+        case "Title":
             return media.sort(
                 (a, b) => a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1
             );
-        case "popular":
+        case "Popular":
             return media.sort((a, b) => b.likes - a.likes);
         default:
             return media;
@@ -173,7 +173,7 @@ const init = async () => {
             console.log(selectedOption);
             displayMedia(mediaPhotographer, selectedOption);
         });
-        displayMedia(mediaPhotographer, "popular");
+        displayMedia(mediaPhotographer, "Popular");
         displayPhotographerCard(parseInt(id));
         console.log(photographerInformation);
     } catch (error) {
