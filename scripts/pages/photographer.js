@@ -1,7 +1,7 @@
 const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);
 const id = params.get("id");
-const filterButton = document.getElementsByClassName("filterButton");
+
 
 const getPhotographerById = async (id) => {
     try {
@@ -63,10 +63,11 @@ const displayPhotographHeaderData = async (photographerInformation) => {
 };
 
 const filterMedia = (media, filter) => {
+    
     switch (filter) {
         case "title":
             return media.sort(
-                (a, b) => a.title.toLowerCase() < b.title.toLowerCase()
+                (a, b) => a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1
             );
         case "popular":
             return media.sort((a, b) => b.likes - a.likes);
@@ -74,6 +75,7 @@ const filterMedia = (media, filter) => {
             return media;
     }
 };
+
 
 const displayMedia = async (mediaPhotographer, filter) => {
     try {
@@ -85,7 +87,7 @@ const displayMedia = async (mediaPhotographer, filter) => {
         }
         const filteredOptions = filterMedia([...mediaPhotographer], filter);
 
-        mediaSection.innerHtml = "";
+        mediaSection.innerHTML = "";
 
         const optionsMedia = Array.isArray(filteredOptions)
             ? filteredOptions
@@ -168,6 +170,7 @@ const init = async () => {
         const dropDown = document.querySelector(".dropdownsSelect");
         dropDown.addEventListener("change", (event) => {
             const selectedOption = event.target.value;
+            console.log(selectedOption);
             displayMedia(mediaPhotographer, selectedOption);
         });
         displayMedia(mediaPhotographer, "title");
