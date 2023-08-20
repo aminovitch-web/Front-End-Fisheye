@@ -77,6 +77,9 @@ const filterMedia = (media, filter) => {
 };
 
 
+
+
+
 const displayMedia = async (mediaPhotographer, filter) => {
     try {
         const mediaSection = document.querySelector(".medias");
@@ -98,11 +101,69 @@ const displayMedia = async (mediaPhotographer, filter) => {
             const mediaModel = mediaFactory(mediaData);
             const mediaDom = mediaModel.getMediaDom();
             mediaSection.appendChild(mediaDom);
+            
         });
     } catch (error) {
         console.log("Erreur lors de l'affichage des médias :", error);
     }
 };
+
+
+
+const openLightBox = (mediaData,mediaType) => {
+    const lightbox = document.createElement("div");
+    lightbox.classList.add("lightbox");
+    lightbox.id = "lightbox";
+  
+    const closeButton = document.createElement("span");
+    closeButton.classList.add("close-button");
+    closeButton.id = "closeButton";
+    closeButton.innerHTML = "&times;";
+    closeButton.addEventListener("click", () => {
+      lightbox.style.display = "none";
+    });
+  
+    const lightboxContent = document.createElement("div");
+    lightboxContent.classList.add("lightbox-content");
+  
+    if (mediaType === "image") {
+      const lightboxImage = document.createElement("img");
+      lightboxImage.src = mediaData.src;
+      lightboxImage.alt = "Lightbox Image";
+      lightboxImage.classList.add("lightbox-image");
+      lightboxContent.appendChild(lightboxImage);
+    } else if (mediaType === "video") {
+      const lightboxVideo = document.createElement("video");
+      lightboxVideo.src = mediaData;
+      lightboxVideo.controls = true;
+      lightboxVideo.classList.add("lightbox-video");
+      lightboxContent.appendChild(lightboxVideo);
+    }
+
+    const prevButton = document.createElement("button");
+    prevButton.classList.add("nav-button", "prev-button");
+    prevButton.id = "prevButton";
+    prevButton.innerHTML = "&#8249;";
+    prevButton.addEventListener("click", () => {
+       
+    });
+
+    const nextButton = document.createElement("button");
+    nextButton.classList.add("nav-button", "next-button");
+    nextButton.id = "nextButton";
+    nextButton.innerHTML = "&#8250;";
+    nextButton.addEventListener("click", () => {
+       
+    });
+    lightbox.appendChild(closeButton);
+    lightbox.appendChild(lightboxContent);
+    lightbox.appendChild(prevButton);
+    lightbox.appendChild(nextButton);
+    const lightBoxContainer = document.querySelector(".lightBoxContainer");
+    lightBoxContainer.appendChild(lightbox);
+    lightbox.style.display = "block";
+  };
+
 
 const getTotalLikesCard = async (id) => {
     try {

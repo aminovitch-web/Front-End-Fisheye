@@ -18,11 +18,17 @@ const mediaFactory = (data) => {
       const imgTag = document.createElement("img");
       imgTag.setAttribute("src", "assets/media/"+image); 
       articleTag.appendChild(imgTag);
+      imgTag.addEventListener("click", () => {
+        openLightBox(imgTag,mediaType);
+      });
     } else if (mediaType === "video") {
       const videoTag = document.createElement("video");
       videoTag.setAttribute("src","assets/media/"+video);
       videoTag.setAttribute("controls","");
       articleTag.appendChild(videoTag);
+      videoTag.addEventListener("click", () => {
+       openLightBox(videoTag,mediaType);
+      });
     }
 
     const divTag = document.createElement("div");
@@ -40,6 +46,7 @@ const mediaFactory = (data) => {
     articleTag.appendChild(divTag);
 
     return articleTag;
+    
     
   }
 
