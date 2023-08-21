@@ -33,9 +33,9 @@
 }
 
 .modal header h2 {
-    font-size: 40px;
-    font-weight: normal;
-    text-align: center;
+    vertical-align: top;
+    font-size: 46px;
+    font-weight: 500;
 }
 
 form {
