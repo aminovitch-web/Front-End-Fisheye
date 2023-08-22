@@ -233,6 +233,7 @@ const init = async () => {
             const selectedOption = event.target.value;
             console.log(selectedOption);
             displayMedia(mediaPhotographer, selectedOption);
+            displayPhotographerCard(parseInt(id));
         });
         displayMedia(mediaPhotographer, "Popular");
         displayPhotographerCard(parseInt(id));
