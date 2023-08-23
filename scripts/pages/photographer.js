@@ -222,6 +222,8 @@ const displayPhotographerCard = async (id) => {
     }
 };
 
+
+
 const init = async () => {
     try {
         const photographerInformation = await getPhotographerById(id);

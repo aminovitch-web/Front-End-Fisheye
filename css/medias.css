@@ -39,3 +39,19 @@
     background-color: transparent;
     font-size: 1em;
 }
+
+.like-button {
+    transition: transform 0.2s; 
+}
+
+.like-button:hover {
+    transform: scale(1.1); 
+}
+
+.media-img {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.media-img:hover {
+    transform: scale(1.05);
+}

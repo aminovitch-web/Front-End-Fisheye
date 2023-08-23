@@ -17,6 +17,7 @@ const mediaFactory = (data) => {
     if (mediaType === "image") {
       const imgTag = document.createElement("img");
       imgTag.setAttribute("src", "assets/media/"+image); 
+      imgTag.classList.add("media-img");
       articleTag.appendChild(imgTag);
       imgTag.addEventListener("click", () => {
         openLightBox(imgTag,mediaType);
@@ -39,9 +40,28 @@ const mediaFactory = (data) => {
 
     const buttonTag = document.createElement("button");
     buttonTag.classList.add("like");
+    buttonTag.classList.add("like-button")
     buttonTag.setAttribute("aria-label", "bouton pour aimer");
     buttonTag.textContent = `${likes} ♥`;
+
+    buttonTag.addEventListener("click", () => {
+      toggleLike(buttonTag);
+  });
+
+
     divTag.appendChild(buttonTag);
+    
+    
+const toggleLike = (likeButton) => {
+  const isLiked = likeButton.classList.contains("liked");
+  if (isLiked) {
+      likeButton.classList.remove("liked");
+      likeButton.textContent = `${parseInt(likeButton.textContent) - 1} ♥`;
+  } else {
+      likeButton.classList.add("liked");
+      likeButton.textContent = `${parseInt(likeButton.textContent) + 1} ♥`;
+  }
+};
 
     articleTag.appendChild(divTag);
 
