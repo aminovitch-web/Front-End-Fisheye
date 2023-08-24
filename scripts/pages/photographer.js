@@ -207,6 +207,7 @@ const displayPhotographerCard = async (id) => {
         photographerCard.setAttribute("aria-label", "total like et prix");
 
         const likesSpan = document.createElement("span");
+        likesSpan.classList.add("total-likes");
         likesSpan.textContent = `${totalLikes} ♥`;
 
         const priceSpan = document.createElement("span");

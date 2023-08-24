@@ -52,16 +52,21 @@ const mediaFactory = (data) => {
     divTag.appendChild(buttonTag);
     
     
-const toggleLike = (likeButton) => {
-  const isLiked = likeButton.classList.contains("liked");
-  if (isLiked) {
-      likeButton.classList.remove("liked");
-      likeButton.textContent = `${parseInt(likeButton.textContent) - 1} ♥`;
-  } else {
-      likeButton.classList.add("liked");
-      likeButton.textContent = `${parseInt(likeButton.textContent) + 1} ♥`;
-  }
-};
+    const toggleLike = (likeButton) => {
+      let likesSpan = document.querySelector(".total-likes");
+      const isLiked = likeButton.classList.contains("liked");
+      
+      if (isLiked) {
+        likeButton.classList.remove("liked");
+        likeButton.textContent = `${parseInt(likeButton.textContent) - 1} ♥`;
+        likesSpan.textContent = parseInt(likesSpan.textContent) - 1+" ♥";
+      } else {
+        likeButton.classList.add("liked");
+        likeButton.textContent = `${parseInt(likeButton.textContent) + 1} ♥`;
+        likesSpan.textContent = parseInt(likesSpan.textContent) + 1+" ♥";
+      }
+    };
+    
 
     articleTag.appendChild(divTag);
 
