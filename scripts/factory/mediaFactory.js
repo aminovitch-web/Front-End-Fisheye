@@ -25,7 +25,7 @@ const mediaFactory = (data) => {
     } else if (mediaType === "video") {
       const videoTag = document.createElement("video");
       videoTag.setAttribute("src","assets/media/"+video);
-      videoTag.setAttribute("controls","");
+      videoTag.setAttribute("control","false");
       articleTag.appendChild(videoTag);
       videoTag.addEventListener("click", () => {
        openLightBox(videoTag,mediaType);

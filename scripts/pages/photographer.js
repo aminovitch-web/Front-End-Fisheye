@@ -1,7 +1,7 @@
 const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);
 const id = params.get("id");
-
+const mediaArray = [];
 
 const getPhotographerById = async (id) => {
     try {
@@ -33,7 +33,7 @@ const getMediaByPhotographer = async (id) => {
         );
 
         if (mediasData.length > 0) {
-            console.log("media photograph: :", mediasData);
+            
             return mediasData;
         } else {
             console.log("No media found for photographer", id);
@@ -46,19 +46,26 @@ const getMediaByPhotographer = async (id) => {
 };
 
 const displayPhotographHeaderData = async (photographerInformation) => {
-    const photographerCardHeader = document.querySelector(".photograph-header");
-    const photographerModel = photographersFactory(photographerInformation);
-    const photographerCardHeaderElement =
-        photographerModel.getPhotographerCardHeader(photographerCardHeader);
+    try {
+        const photographerCardHeader = document.querySelector(".photograph-header");
+        const photographerModel = photographersFactory(photographerInformation);
+        const photographerCardHeaderElement =
+            photographerModel.getPhotographerCardHeader(photographerCardHeader);
 
-    if (photographerCardHeader) {
-        photographerCardHeader.appendChild(photographerCardHeaderElement);
-
-        console.log(photographerCardHeader);
-    } else {
-        console.log(
-            "L'élément photograph-header n'a pas été trouvé dans le DOM."
-        );
+        if (photographerCardHeader && photographerCardHeaderElement) {
+           
+            if (!photographerCardHeader.contains(photographerCardHeaderElement)) {
+                photographerCardHeader.appendChild(photographerCardHeaderElement);
+            } else {
+                
+            }
+        } else {
+            console.log(
+                "L'élément photograph-header n'a pas été trouvé dans le DOM."
+            );
+        }
+    } catch (error) {
+        console.log(error);
     }
 };
 
@@ -89,20 +96,22 @@ const displayMedia = async (mediaPhotographer, filter) => {
             return;
         }
         const filteredOptions = filterMedia([...mediaPhotographer], filter);
+        
 
         mediaSection.innerHTML = "";
 
         const optionsMedia = Array.isArray(filteredOptions)
             ? filteredOptions
             : Object.values(filteredOptions);
-            console.log(filteredOptions);
-            console.log(optionsMedia);
+            
         optionsMedia.forEach((mediaData) => {
             const mediaModel = mediaFactory(mediaData);
             const mediaDom = mediaModel.getMediaDom();
             mediaSection.appendChild(mediaDom);
-            
+        
         });
+       
+
     } catch (error) {
         console.log("Erreur lors de l'affichage des médias :", error);
     }
@@ -111,6 +120,7 @@ const displayMedia = async (mediaPhotographer, filter) => {
 
 
 const openLightBox = (mediaData,mediaType) => {
+    
     const lightbox = document.createElement("div");
     lightbox.classList.add("lightbox");
     lightbox.id = "lightbox";
@@ -240,7 +250,6 @@ const init = async () => {
         });
         displayMedia(mediaPhotographer, "Popular");
         displayPhotographerCard(parseInt(id));
-        console.log(photographerInformation);
     } catch (error) {
         console.error("Erreur lors de l'initialisation : ", error);
     }
