@@ -20,7 +20,8 @@ const mediaFactory = (data) => {
       imgTag.classList.add("media-img");
       articleTag.appendChild(imgTag);
       imgTag.addEventListener("click", () => {
-        openLightBox(imgTag,mediaType);
+        openLightBox(data,imgTag,mediaType);
+        console.log(imgTag);
       });
     } else if (mediaType === "video") {
       const videoTag = document.createElement("video");
@@ -28,7 +29,7 @@ const mediaFactory = (data) => {
       videoTag.setAttribute("control","false");
       articleTag.appendChild(videoTag);
       videoTag.addEventListener("click", () => {
-       openLightBox(videoTag,mediaType);
+       openLightBox(data,videoTag,mediaType);
       });
     }
 

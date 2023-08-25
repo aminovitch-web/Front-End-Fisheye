@@ -79,7 +79,7 @@ const filterMedia = (media, filter) => {
             );
         case "Popular":
             return media.sort((a, b) => b.likes - a.likes);
-        case "Date": 
+        case "Date":
             return media.sort((a, b) => new Date(b.date) - new Date(a.date));
         default:
             return media;
@@ -103,6 +103,7 @@ const displayMedia = async (mediaPhotographer, filter) => {
             : Object.values(filteredOptions);
 
         optionsMedia.forEach((mediaData) => {
+            mediaArray.push(mediaData.id);
             const mediaModel = mediaFactory(mediaData);
             const mediaDom = mediaModel.getMediaDom();
             mediaSection.appendChild(mediaDom);
@@ -112,7 +113,8 @@ const displayMedia = async (mediaPhotographer, filter) => {
     }
 };
 
-const openLightBox = (mediaData, mediaType) => {
+const openLightBox = (data, mediaData, mediaType) => {
+    imageMediaId = data.id;
     const lightbox = document.createElement("div");
     lightbox.classList.add("lightbox");
     lightbox.id = "lightbox";
@@ -146,21 +148,51 @@ const openLightBox = (mediaData, mediaType) => {
     prevButton.classList.add("nav-button", "prev-button");
     prevButton.id = "prevButton";
     prevButton.innerHTML = "&#8249;";
-    prevButton.addEventListener("click", () => {});
+    prevButton.addEventListener("click", () => {
+        var currentIndex = mediaArray.indexOf(imageMediaId);
+        var lastIndex = mediaArray.length - 1;
+
+        if (currentIndex !== -1) {
+            currentIndex = (currentIndex === 0) ? lastIndex : currentIndex - 1;
+            var previousId = mediaArray[currentIndex];
+            // console.log("La position précédente est : " + currentIndex);
+            // console.log("L'identifiant à la position précédente est : " + previousId);
+            imageMediaId = previousId; 
+        } else {
+            console.log("currentId n'a pas été trouvé dans mediaArray.");
+        }
+    });
 
     const nextButton = document.createElement("button");
     nextButton.classList.add("nav-button", "next-button");
     nextButton.id = "nextButton";
     nextButton.innerHTML = "&#8250;";
-    nextButton.addEventListener("click", () => {});
+    nextButton.addEventListener("click", () => {
+        var currentIndex = mediaArray.indexOf(imageMediaId);
+        var lastIndex = mediaArray.length - 1;
+
+        if (currentIndex !== -1) {
+            currentIndex = (currentIndex === lastIndex) ? 0 : currentIndex + 1;
+            var nextId = mediaArray[currentIndex];
+            // console.log("La position suivante est : " + currentIndex);
+            // console.log("L'identifiant à la position suivante est : " + nextId);
+            imageMediaId = nextId; 
+        } else {
+            console.log("currentId n'a pas été trouvé dans mediaArray.");
+        }
+    });
+
     lightbox.appendChild(closeButton);
     lightbox.appendChild(lightboxContent);
     lightbox.appendChild(prevButton);
     lightbox.appendChild(nextButton);
+    
     const lightBoxContainer = document.querySelector(".lightBoxContainer");
     lightBoxContainer.appendChild(lightbox);
     lightbox.style.display = "block";
 };
+
+
 
 const getTotalLikesCard = async (id) => {
     try {
