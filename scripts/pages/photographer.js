@@ -33,7 +33,6 @@ const getMediaByPhotographer = async (id) => {
         );
 
         if (mediasData.length > 0) {
-            
             return mediasData;
         } else {
             console.log("No media found for photographer", id);
@@ -47,17 +46,20 @@ const getMediaByPhotographer = async (id) => {
 
 const displayPhotographHeaderData = async (photographerInformation) => {
     try {
-        const photographerCardHeader = document.querySelector(".photograph-header");
+        const photographerCardHeader =
+            document.querySelector(".photograph-header");
         const photographerModel = photographersFactory(photographerInformation);
         const photographerCardHeaderElement =
             photographerModel.getPhotographerCardHeader(photographerCardHeader);
 
         if (photographerCardHeader && photographerCardHeaderElement) {
-           
-            if (!photographerCardHeader.contains(photographerCardHeaderElement)) {
-                photographerCardHeader.appendChild(photographerCardHeaderElement);
+            if (
+                !photographerCardHeader.contains(photographerCardHeaderElement)
+            ) {
+                photographerCardHeader.appendChild(
+                    photographerCardHeaderElement
+                );
             } else {
-                
             }
         } else {
             console.log(
@@ -70,22 +72,19 @@ const displayPhotographHeaderData = async (photographerInformation) => {
 };
 
 const filterMedia = (media, filter) => {
-    
     switch (filter) {
         case "Title":
-            return media.sort(
-                (a, b) => a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1
+            return media.sort((a, b) =>
+                a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1
             );
         case "Popular":
             return media.sort((a, b) => b.likes - a.likes);
+        case "Date": 
+            return media.sort((a, b) => new Date(b.date) - new Date(a.date));
         default:
             return media;
     }
 };
-
-
-
-
 
 const displayMedia = async (mediaPhotographer, filter) => {
     try {
@@ -96,75 +95,64 @@ const displayMedia = async (mediaPhotographer, filter) => {
             return;
         }
         const filteredOptions = filterMedia([...mediaPhotographer], filter);
-        
 
         mediaSection.innerHTML = "";
 
         const optionsMedia = Array.isArray(filteredOptions)
             ? filteredOptions
             : Object.values(filteredOptions);
-            
+
         optionsMedia.forEach((mediaData) => {
             const mediaModel = mediaFactory(mediaData);
             const mediaDom = mediaModel.getMediaDom();
             mediaSection.appendChild(mediaDom);
-        
         });
-       
-
     } catch (error) {
         console.log("Erreur lors de l'affichage des médias :", error);
     }
 };
 
-
-
-const openLightBox = (mediaData,mediaType) => {
-    
+const openLightBox = (mediaData, mediaType) => {
     const lightbox = document.createElement("div");
     lightbox.classList.add("lightbox");
     lightbox.id = "lightbox";
-  
+
     const closeButton = document.createElement("span");
     closeButton.classList.add("close-button");
     closeButton.id = "closeButton";
     closeButton.innerHTML = "&times;";
     closeButton.addEventListener("click", () => {
-      lightbox.style.display = "none";
+        lightbox.style.display = "none";
     });
-  
+
     const lightboxContent = document.createElement("div");
     lightboxContent.classList.add("lightbox-content");
-  
+
     if (mediaType === "image") {
-      const lightboxImage = document.createElement("img");
-      lightboxImage.src = mediaData.src;
-      lightboxImage.alt = "Lightbox Image";
-      lightboxImage.classList.add("lightbox-image");
-      lightboxContent.appendChild(lightboxImage);
+        const lightboxImage = document.createElement("img");
+        lightboxImage.src = mediaData.src;
+        lightboxImage.alt = "Lightbox Image";
+        lightboxImage.classList.add("lightbox-image");
+        lightboxContent.appendChild(lightboxImage);
     } else if (mediaType === "video") {
-      const lightboxVideo = document.createElement("video");
-      lightboxVideo.src = mediaData;
-      lightboxVideo.controls = true;
-      lightboxVideo.classList.add("lightbox-video");
-      lightboxContent.appendChild(lightboxVideo);
+        const lightboxVideo = document.createElement("video");
+        lightboxVideo.src = mediaData;
+        lightboxVideo.controls = true;
+        lightboxVideo.classList.add("lightbox-video");
+        lightboxContent.appendChild(lightboxVideo);
     }
 
     const prevButton = document.createElement("button");
     prevButton.classList.add("nav-button", "prev-button");
     prevButton.id = "prevButton";
     prevButton.innerHTML = "&#8249;";
-    prevButton.addEventListener("click", () => {
-       
-    });
+    prevButton.addEventListener("click", () => {});
 
     const nextButton = document.createElement("button");
     nextButton.classList.add("nav-button", "next-button");
     nextButton.id = "nextButton";
     nextButton.innerHTML = "&#8250;";
-    nextButton.addEventListener("click", () => {
-       
-    });
+    nextButton.addEventListener("click", () => {});
     lightbox.appendChild(closeButton);
     lightbox.appendChild(lightboxContent);
     lightbox.appendChild(prevButton);
@@ -172,8 +160,7 @@ const openLightBox = (mediaData,mediaType) => {
     const lightBoxContainer = document.querySelector(".lightBoxContainer");
     lightBoxContainer.appendChild(lightbox);
     lightbox.style.display = "block";
-  };
-
+};
 
 const getTotalLikesCard = async (id) => {
     try {
@@ -233,14 +220,12 @@ const displayPhotographerCard = async (id) => {
     }
 };
 
-
-
 const init = async () => {
     try {
         const photographerInformation = await getPhotographerById(id);
         displayPhotographHeaderData(photographerInformation);
         const mediaPhotographer = await getMediaByPhotographer(id);
-        
+
         const dropDown = document.querySelector(".dropdownsSelect");
         dropDown.addEventListener("change", (event) => {
             const selectedOption = event.target.value;
