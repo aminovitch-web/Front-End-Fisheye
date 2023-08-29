@@ -131,13 +131,17 @@ const openLightBox = () => {
             const imgElement = card.querySelector(".media-img");
             const videoElement = card.querySelector("video");
             let mediaContent = "";
-
+            const mediaTitle = card.querySelector('span');
             if (imgElement) {
                 const imgSrc = imgElement.getAttribute("src");
-                mediaContent = `<img src="${imgSrc}" alt="Lightbox Image" class="lightbox-image">`;
+                const title= mediaTitle.textContent;
+                mediaContent = `<img src="${imgSrc}" alt="Lightbox Image" class="lightbox-image">
+                                <span class="lightboxTitle">${title}</span>`;
             } else if (videoElement) {
                 const videoSrc = videoElement.getAttribute("src");
-                mediaContent = `<video src="${videoSrc}" controls="true" class="lightbox-video"></video>`;
+                const title  = mediaTitle.textContent;
+                mediaContent = `<video src="${videoSrc}" controls="true" class="lightbox-video"></video>
+                                <span class="lightboxTitle">${title}</span>`;
             }
 
             lightboxContent.innerHTML = mediaContent;

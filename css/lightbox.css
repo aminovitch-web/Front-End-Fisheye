@@ -20,6 +20,18 @@
     transform: translate(-50%, -50%);
 }
 
+.lightboxTitle {
+    position: absolute;
+    bottom: 60px;
+    left: 24%;
+    transform: translateX(-50%);
+    font-size: 27px;
+    color: var(--colorMain);
+    text-align: center;
+    width: 100%;
+}
+
+
 .lightbox-video {
     display: block;
     max-width: 80%;
@@ -36,7 +48,7 @@
     bottom:80%;
     left: 80%;
     font-size: 100px;
-    color: red;
+    color: var(--colorMain);
     cursor: pointer;
 }
 
@@ -45,7 +57,7 @@
     top: 50%;
     transform: translateY(-50%);
     font-size: 100px;
-    color:red;
+    color: var(--colorMain);
     background-color: transparent;
     border: none;
     cursor: pointer;
