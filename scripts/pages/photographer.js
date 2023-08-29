@@ -113,86 +113,57 @@ const displayMedia = async (mediaPhotographer, filter) => {
     }
 };
 
-const openLightBox = (data, mediaData, mediaType) => {
-    imageMediaId = data.id;
-    const lightbox = document.createElement("div");
-    lightbox.classList.add("lightbox");
-    lightbox.id = "lightbox";
+const openLightBox = () => {
+    const cards = document.querySelectorAll(".card");
+    const lightbox = document.querySelector(".lightbox");
+    const lightboxContent = lightbox.querySelector(".lightbox-content");
+    const closeButton = document.querySelector(".close-button");
+    const nextButton = document.querySelector(".next-button");
+    const prevButton = document.querySelector(".prev-button");
 
-    const closeButton = document.createElement("span");
-    closeButton.classList.add("close-button");
-    closeButton.id = "closeButton";
-    closeButton.innerHTML = "&times;";
+    let currentIndex = 0;
+
+    cards.forEach((card) => {
+        card.addEventListener("click", () => {
+            currentIndex = mediaArray.indexOf(
+                parseInt(card.getAttribute("id"))
+            );
+            const imgElement = card.querySelector(".media-img");
+            const videoElement = card.querySelector("video");
+            let mediaContent = "";
+
+            if (imgElement) {
+                const imgSrc = imgElement.getAttribute("src");
+                mediaContent = `<img src="${imgSrc}" alt="Lightbox Image" class="lightbox-image">`;
+            } else if (videoElement) {
+                const videoSrc = videoElement.getAttribute("src");
+                mediaContent = `<video src="${videoSrc}" controls class="lightbox-video"></video>`;
+            }
+
+            lightboxContent.innerHTML = mediaContent;
+            lightbox.style.display = "block";
+        });
+    });
+
     closeButton.addEventListener("click", () => {
         lightbox.style.display = "none";
     });
 
-    const lightboxContent = document.createElement("div");
-    lightboxContent.classList.add("lightbox-content");
-
-    if (mediaType === "image") {
-        const lightboxImage = document.createElement("img");
-        lightboxImage.src = mediaData.src;
-        lightboxImage.alt = "Lightbox Image";
-        lightboxImage.classList.add("lightbox-image");
-        lightboxContent.appendChild(lightboxImage);
-    } else if (mediaType === "video") {
-        const lightboxVideo = document.createElement("video");
-        lightboxVideo.src = mediaData;
-        lightboxVideo.controls = true;
-        lightboxVideo.classList.add("lightbox-video");
-        lightboxContent.appendChild(lightboxVideo);
-    }
-
-    const prevButton = document.createElement("button");
-    prevButton.classList.add("nav-button", "prev-button");
-    prevButton.id = "prevButton";
-    prevButton.innerHTML = "&#8249;";
-    prevButton.addEventListener("click", () => {
-        var currentIndex = mediaArray.indexOf(imageMediaId);
-        var lastIndex = mediaArray.length - 1;
-
-        if (currentIndex !== -1) {
-            currentIndex = (currentIndex === 0) ? lastIndex : currentIndex - 1;
-            var previousId = mediaArray[currentIndex];
-            // console.log("La position précédente est : " + currentIndex);
-            // console.log("L'identifiant à la position précédente est : " + previousId);
-            imageMediaId = previousId; 
-        } else {
-            console.log("currentId n'a pas été trouvé dans mediaArray.");
-        }
-    });
-
-    const nextButton = document.createElement("button");
-    nextButton.classList.add("nav-button", "next-button");
-    nextButton.id = "nextButton";
-    nextButton.innerHTML = "&#8250;";
     nextButton.addEventListener("click", () => {
-        var currentIndex = mediaArray.indexOf(imageMediaId);
-        var lastIndex = mediaArray.length - 1;
-
-        if (currentIndex !== -1) {
-            currentIndex = (currentIndex === lastIndex) ? 0 : currentIndex + 1;
-            var nextId = mediaArray[currentIndex];
-            // console.log("La position suivante est : " + currentIndex);
-            // console.log("L'identifiant à la position suivante est : " + nextId);
-            imageMediaId = nextId; 
-        } else {
-            console.log("currentId n'a pas été trouvé dans mediaArray.");
-        }
+        currentIndex = (currentIndex + 1) % mediaArray.length;
+        const nextMediaId = mediaArray[currentIndex];
+        const nextCard = document.getElementById(nextMediaId);
+        nextCard.click();
     });
 
-    lightbox.appendChild(closeButton);
-    lightbox.appendChild(lightboxContent);
-    lightbox.appendChild(prevButton);
-    lightbox.appendChild(nextButton);
-    
-    const lightBoxContainer = document.querySelector(".lightBoxContainer");
-    lightBoxContainer.appendChild(lightbox);
-    lightbox.style.display = "block";
+    prevButton.addEventListener("click", () => {
+        currentIndex =
+            (currentIndex - 1 + mediaArray.length) % mediaArray.length;
+        const prevMediaId = mediaArray[currentIndex];
+        const prevCard = document.getElementById(prevMediaId);
+        prevCard.click();
+    });
 };
-
-
 
 const getTotalLikesCard = async (id) => {
     try {
@@ -267,6 +238,7 @@ const init = async () => {
         });
         displayMedia(mediaPhotographer, "Popular");
         displayPhotographerCard(parseInt(id));
+        openLightBox();
     } catch (error) {
         console.error("Erreur lors de l'initialisation : ", error);
     }
