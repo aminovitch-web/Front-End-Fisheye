@@ -137,7 +137,7 @@ const openLightBox = () => {
                 mediaContent = `<img src="${imgSrc}" alt="Lightbox Image" class="lightbox-image">`;
             } else if (videoElement) {
                 const videoSrc = videoElement.getAttribute("src");
-                mediaContent = `<video src="${videoSrc}" controls class="lightbox-video"></video>`;
+                mediaContent = `<video src="${videoSrc}" controls="true" class="lightbox-video"></video>`;
             }
 
             lightboxContent.innerHTML = mediaContent;
