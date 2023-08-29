@@ -13,24 +13,19 @@ const mediaFactory = (data) => {
   function getMediaDom() {
     const articleTag = document.createElement("article");
     articleTag.classList.add("card");
-
+    articleTag.setAttribute("id", id);
     if (mediaType === "image") {
       const imgTag = document.createElement("img");
       imgTag.setAttribute("src", "assets/media/"+image); 
       imgTag.classList.add("media-img");
       articleTag.appendChild(imgTag);
-      imgTag.addEventListener("click", () => {
-        openLightBox(data,imgTag,mediaType);
-        console.log(imgTag);
-      });
+
     } else if (mediaType === "video") {
       const videoTag = document.createElement("video");
       videoTag.setAttribute("src","assets/media/"+video);
       videoTag.setAttribute("control","false");
       articleTag.appendChild(videoTag);
-      videoTag.addEventListener("click", () => {
-       openLightBox(data,videoTag,mediaType);
-      });
+     
     }
 
     const divTag = document.createElement("div");

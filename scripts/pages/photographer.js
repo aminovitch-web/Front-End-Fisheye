@@ -235,6 +235,7 @@ const init = async () => {
             console.log(selectedOption);
             displayMedia(mediaPhotographer, selectedOption);
             displayPhotographerCard(parseInt(id));
+            openLightBox();
         });
         displayMedia(mediaPhotographer, "Popular");
         displayPhotographerCard(parseInt(id));
