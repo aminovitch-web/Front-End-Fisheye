@@ -40,7 +40,8 @@ const mediaFactory = (data) => {
     buttonTag.setAttribute("aria-label", "bouton pour aimer");
     buttonTag.textContent = `${likes} ♥`;
 
-    buttonTag.addEventListener("click", () => {
+    buttonTag.addEventListener("click", (event) => {
+      event.stopPropagation();
       toggleLike(buttonTag);
   });
 
