@@ -94,7 +94,15 @@ const displayMedia = async (mediaPhotographer, filter) => {
             console.log("La section .medias n'a pas été trouvée dans le DOM.");
             return;
         }
+
         const filteredOptions = filterMedia([...mediaPhotographer], filter);
+
+        mediaArray.length = 0;
+        filteredOptions.forEach((mediaData) => {
+            mediaArray.push(mediaData.id);
+        });
+
+        console.log("mediaArray after filter change:", mediaArray); 
 
         mediaSection.innerHTML = "";
 
@@ -103,7 +111,6 @@ const displayMedia = async (mediaPhotographer, filter) => {
             : Object.values(filteredOptions);
 
         optionsMedia.forEach((mediaData) => {
-            mediaArray.push(mediaData.id);
             const mediaModel = mediaFactory(mediaData);
             const mediaDom = mediaModel.getMediaDom();
             mediaSection.appendChild(mediaDom);
@@ -122,42 +129,64 @@ const openLightBox = () => {
     const prevButton = document.querySelector(".prev-button");
 
     let currentIndex = 0;
+    let isLightboxOpen = false;
+
+    const cardClickHandler = (card) => {
+        currentIndex = mediaArray.indexOf(parseInt(card.getAttribute("id")));
+
+        const imgElement = card.querySelector(".media-img");
+        const videoElement = card.querySelector("video");
+        let mediaContent = "";
+        const mediaTitle = card.querySelector("span");
+        if (imgElement) {
+            const imgSrc = imgElement.getAttribute("src");
+            const title = mediaTitle.textContent;
+            mediaContent = `<img src="${imgSrc}" alt="Lightbox Image" class="lightbox-image">
+                            <span class="lightboxTitle">${title}</span>`;
+        } else if (videoElement) {
+            const videoSrc = videoElement.getAttribute("src");
+            const title = mediaTitle.textContent;
+            mediaContent = `<video src="${videoSrc}" controls="true" class="lightbox-video"></video>
+                            <span class="lightboxTitle">${title}</span>`;
+        }
+
+        lightboxContent.innerHTML = mediaContent;
+        lightbox.style.display = "block";
+        isLightboxOpen = true;
+
+        cards.forEach((card) => {
+            card.removeEventListener("click", cardClickHandler);
+        });
+    };
 
     cards.forEach((card) => {
         card.addEventListener("click", () => {
-            currentIndex = mediaArray.indexOf(
-                parseInt(card.getAttribute("id"))
-            );
-            const imgElement = card.querySelector(".media-img");
-            const videoElement = card.querySelector("video");
-            let mediaContent = "";
-            const mediaTitle = card.querySelector("span");
-            if (imgElement) {
-                const imgSrc = imgElement.getAttribute("src");
-                const title = mediaTitle.textContent;
-                mediaContent = `<img src="${imgSrc}" alt="Lightbox Image" class="lightbox-image">
-                                <span class="lightboxTitle">${title}</span>`;
-            } else if (videoElement) {
-                const videoSrc = videoElement.getAttribute("src");
-                const title = mediaTitle.textContent;
-                mediaContent = `<video src="${videoSrc}" controls="true" class="lightbox-video"></video>
-                                <span class="lightboxTitle">${title}</span>`;
+            if (isLightboxOpen) {
+                return;
             }
-
-            lightboxContent.innerHTML = mediaContent;
-            lightbox.style.display = "block";
+            cardClickHandler(card);
         });
     });
 
     closeButton.addEventListener("click", () => {
         lightbox.style.display = "none";
+        isLightboxOpen = false;
+
+        cards.forEach((card) => {
+            card.addEventListener("click", () => {
+                if (isLightboxOpen) {
+                    return;
+                }
+                cardClickHandler(card);
+            });
+        });
     });
 
     nextButton.addEventListener("click", () => {
         currentIndex = (currentIndex + 1) % mediaArray.length;
         const nextMediaId = mediaArray[currentIndex];
         const nextCard = document.getElementById(nextMediaId);
-        nextCard.click();
+        cardClickHandler(nextCard);
     });
 
     prevButton.addEventListener("click", () => {
@@ -165,7 +194,7 @@ const openLightBox = () => {
             (currentIndex - 1 + mediaArray.length) % mediaArray.length;
         const prevMediaId = mediaArray[currentIndex];
         const prevCard = document.getElementById(prevMediaId);
-        prevCard.click();
+        cardClickHandler(prevCard);
     });
 };
 
@@ -245,6 +274,11 @@ const init = async () => {
             displayPhotographerCard(parseInt(id));
             openLightBox();
         });
+
+        mediaPhotographer.forEach((mediaData) => {
+            mediaArray.push(mediaData.id);
+        });
+
         displayMedia(mediaPhotographer, "Popular");
         displayPhotographerCard(parseInt(id));
         openLightBox();
