@@ -76,21 +76,21 @@ h1 {
 }
 
 .card__photographName {
-    color: rgb(215, 102, 77);
+    color: #d3573c; 
     margin: 0; 
 }
 
 .card__city {
-    color: rgb(227, 112, 112);
+    color: #901c1c; 
     margin: 0; 
 }
 
 .card__tagLine {
-    color: rgb(232, 230, 227);
+    color: #232323; 
     margin: 0; 
 }
 
 .card__price {
-    color: rgb(158, 150, 137);
+    color: #757575; 
     margin: 0; 
 }

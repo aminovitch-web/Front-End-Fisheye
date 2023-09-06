@@ -1,81 +1,78 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="fr">
+<head>
     <link href="css/normalizer.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header aria-abel="logo et lien vers la page ">
-      <a href="index.html"> 
-        <img src="assets/logo/logo.png" class="logo" alt="fisheye logo"/>
-    </a>
+    <title>Fisheye - photographe</title>
+</head>
+<body>
+    <header aria-abel="logo et lien vers la page">
+      <h1>
+        <a href="index.html">
+            <img src="assets/logo/logo.png" class="logo" alt="fisheye logo"/>
+        </a>
+      </h1>
     </header>
     <main id="main">
-      <section class="photograph-header">
-      </section>
-      <section class="dropdowns">
-        <span> trier par </span>
-      <select class="dropdownsSelect"  aria-label="Menu de tri">
-        <option class="dropdownsSelect__options" value="Popular">Popularité</option>
-        <option class="dropdownsSelect__options" value="Title">Titre</option>
-        <option class="dropdownsSelect__options" value="Date">Date</option>
-      </select>
-    </section>
-      <section class="medias">
-      </section>
-      <section class="card">
-        
-      </section>
+        <section class="photograph-header">
+        </section>
+        <section class="dropdowns">
+            <span> trier par </span>
+            <select class="dropdownsSelect" aria-label="Menu de tri">
+                <option class="dropdownsSelect__options" value="Popular">Popularité</option>
+                <option class="dropdownsSelect__options" value="Title">Titre</option>
+                <option class="dropdownsSelect__options" value="Date">Date</option>
+            </select>
+        </section>
+        <section class="medias">
+        </section>
+        <section class="card">
+        </section>
     </main>
     <section class="lightBoxContainer">
-      <div class="lightbox">
-        <span class="close-button" id="closeButton">&times;</span>
-        <div class="lightbox-content">
-
-      </div>
-      <span class="lightboxTitle"></span>
-      <button class="nav-button prev-button" id="prevButton">&#8249;</button>
-      <button class="nav-button next-button" id="nextButton">&#8250;</button>
-  </div>
-      </div>
+        <div class="lightbox">
+            <span class="close-button" tabindex="0" id="closeButton">&times;</span>
+            <div class="lightbox-content">
+            </div>
+            <span class="lightboxTitle"></span>
+            <button class="nav-button prev-button" tabindex="1" id="prevButton">&#8249;</button>
+            <button class="nav-button next-button" tabindex="2" id="nextButton">&#8250;</button>
+        </div>
     </section>
     <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2 class="informationContact"></h2>
-          <img  aria-label="fermer le formulaire" src="assets/icons/close.svg" id="close_modal" />
-        </header>
-				<form method="post" action="photographer.html" aria-label="Formulaire de contact du photographe">
-          <div>
-              <label for="prenom">Prénom</label>
-              <input type="text" id="prenom" name="prenom" required aria-label="Indiquer son prénom" />
-          </div>
-          <div>
-              <label for="nom">Nom</label>
-              <input type="text" id="nom" name="nom" required aria-label="Indiquer son nom" />
-          </div>
-          <div>
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required aria-label="Indiquer son email" />
-          </div>
-          <div>
-              <label for="message">Votre message</label>
-              <textarea id="message" name="message" aria-label="Indiquer votre message"></textarea>
-          </div>
-          <button class="contact_button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
-      </form>
-      
-			</div>
-		</div>
+        <div class="modal">
+            <header>
+                <h2 class="informationContact"></h2>
+                <img  aria-label="fermer le formulaire" src="assets/icons/close.svg" id="close_modal" />
+            </header>
+            <form method="post" action="photographer.html" aria-label="Formulaire de contact du photographe">
+                <div>
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" required aria-label="Indiquer son prénom" />
+                </div>
+                <div>
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" required aria-label="Indiquer son nom" />
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required aria-label="Indiquer son email" />
+                </div>
+                <div>
+                    <label for="message">Votre message</label>
+                    <textarea id="message" name="message" aria-label="Indiquer votre message"></textarea>
+                </div>
+                <button class="contact_button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
+            </form>
+        </div>
+    </div>
     <script src="scripts/factory/photographersFactory.js"></script>
-    <script src ="scripts/factory/mediaFactory.js"></script>
+    <script src="scripts/factory/mediaFactory.js"></script>
     <script src="scripts/services/photographersServices.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
-
-  </body>
+</body>
 </html>

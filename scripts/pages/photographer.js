@@ -102,7 +102,7 @@ const displayMedia = async (mediaPhotographer, filter) => {
             mediaArray.push(mediaData.id);
         });
 
-        console.log("mediaArray after filter change:", mediaArray); 
+        console.log("mediaArray after filter change:", mediaArray);
 
         mediaSection.innerHTML = "";
 
@@ -159,6 +159,22 @@ const openLightBox = () => {
         });
     };
 
+    const navigateLightBox = (event) => {
+        if (isLightboxOpen) {
+            if (event.key === "ArrowLeft" && currentIndex > 0) {
+                currentIndex--;
+            } else if (
+                event.key === "ArrowRight" &&
+                currentIndex < mediaArray.length - 1
+            ) {
+                currentIndex++;
+            }
+
+            const card = cards[currentIndex];
+            cardClickHandler(card);
+        }
+    };
+
     cards.forEach((card) => {
         card.addEventListener("click", () => {
             if (isLightboxOpen) {
@@ -166,7 +182,18 @@ const openLightBox = () => {
             }
             cardClickHandler(card);
         });
+
+        card.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                if (isLightboxOpen) {
+                    return;
+                }
+                cardClickHandler(card);
+            }
+        });
     });
+
+    document.addEventListener("keydown", navigateLightBox);
 
     closeButton.addEventListener("click", () => {
         lightbox.style.display = "none";
@@ -180,6 +207,13 @@ const openLightBox = () => {
                 cardClickHandler(card);
             });
         });
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Space") {
+            lightbox.style.display = "none";
+            isLightboxOpen = false;
+        }
     });
 
     nextButton.addEventListener("click", () => {
@@ -197,6 +231,7 @@ const openLightBox = () => {
         cardClickHandler(prevCard);
     });
 };
+
 
 const getTotalLikesCard = async (id) => {
     try {

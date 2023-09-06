@@ -70,6 +70,7 @@ const photographersFactory = (data) => {
     
       const photographImg = document.createElement("img");
       photographImg.setAttribute("src", picture); 
+      photographImg.setAttribute("alt", "Photo du photographe"+ name);
     
       if(photographerCardHeader){
     

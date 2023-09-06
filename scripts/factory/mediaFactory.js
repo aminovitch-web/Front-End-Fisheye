@@ -16,16 +16,19 @@ const mediaFactory = (data) => {
     articleTag.setAttribute("id", id);
     if (mediaType === "image") {
       const imgTag = document.createElement("img");
-      imgTag.setAttribute("src", "assets/media/"+image); 
+      imgTag.setAttribute("src", "assets/media/" + image);
+      imgTag.setAttribute("alt", "Photo " + title);
       imgTag.classList.add("media-img");
+      imgTag.setAttribute("tabindex", "0"); 
+      imgTag.setAttribute("aria-label", "Photo " + title); 
       articleTag.appendChild(imgTag);
-
     } else if (mediaType === "video") {
       const videoTag = document.createElement("video");
-      videoTag.setAttribute("src","assets/media/"+video);
-      videoTag.setAttribute("control","false");
+      videoTag.setAttribute("src", "assets/media/" + video);
+      videoTag.setAttribute("control", "false");
+      videoTag.setAttribute("tabindex", "0"); 
+      videoTag.setAttribute("aria-label", "Vidéo " + title); 
       articleTag.appendChild(videoTag);
-     
     }
 
     const divTag = document.createElement("div");
