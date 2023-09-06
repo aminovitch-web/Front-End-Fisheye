@@ -190,7 +190,9 @@ const openLightBox = () => {
                     isLightboxOpen = false;
                     return;
                 }
-                cardClickHandler(card);
+                if (!event.target.classList.contains("like-button")) {
+                    cardClickHandler(card);
+                }
             }
         });
     });
