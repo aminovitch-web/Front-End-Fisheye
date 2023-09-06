@@ -186,6 +186,8 @@ const openLightBox = () => {
         card.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
                 if (isLightboxOpen) {
+                    lightbox.style.display = "none";
+                    isLightboxOpen = false;
                     return;
                 }
                 cardClickHandler(card);
@@ -208,13 +210,9 @@ const openLightBox = () => {
             });
         });
     });
-
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Space") {
-            lightbox.style.display = "none";
-            isLightboxOpen = false;
-        }
-    });
+     
+ 
+     
 
     nextButton.addEventListener("click", () => {
         currentIndex = (currentIndex + 1) % mediaArray.length;
