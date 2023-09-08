@@ -1,17 +1,17 @@
-export async function getAllDataService() {
-  const URL = "data/photographers.json";
+export async function getAllDataService () {
+  const URL = 'data/photographers.json'
 
   try {
-    const response = await fetch(URL);
+    const response = await fetch(URL)
 
     if (response.ok) {
-      return response.json();
+      return response.json()
     } else {
-      console.error("Erreur de réponse :", response.status);
-      return []; 
+      console.error('Erreur de réponse :', response.status)
+      return []
     }
   } catch (error) {
-    console.error("Erreur lors de la récupération des données :", error);
-    return false;
+    console.error('Erreur lors de la récupération des données :', error)
+    return false
   }
 }
