@@ -87,3 +87,4 @@ const mediaFactory = (data) => {
     getMediaDom,
   };
 };
+export { mediaFactory }

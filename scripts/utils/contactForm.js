@@ -26,3 +26,5 @@ const initializeForm = (contactButton,name) => {
     closeModal();
 
 }
+
+export { initializeForm }

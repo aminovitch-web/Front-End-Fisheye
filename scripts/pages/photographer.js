@@ -1,3 +1,8 @@
+import { getAllDataService } from '../services/photographersServices.js';
+import { photographersFactory } from '../factory/photographersFactory.js';
+import { mediaFactory } from '../factory/mediaFactory.js';
+
+
 const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);
 const id = params.get("id");
@@ -59,7 +64,6 @@ const displayPhotographHeaderData = async (photographerInformation) => {
                 photographerCardHeader.appendChild(
                     photographerCardHeaderElement
                 );
-            } else {
             }
         } else {
             console.log(

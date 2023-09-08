@@ -1,3 +1,4 @@
+import { initializeForm } from '../utils/contactForm.js';
 const photographersFactory = (data) => {
     const { name, id, city, country, tagline, price, portrait } = data;
     const picture = `assets/photographers/${portrait}`;
@@ -106,7 +107,7 @@ const photographersFactory = (data) => {
       getPhotographerCardHeader
     };
   };
-
+export { photographersFactory }
   
 
 

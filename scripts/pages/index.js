@@ -1,3 +1,6 @@
+import { getAllDataService } from '../services/photographersServices.js';
+import { photographersFactory } from '../factory/photographersFactory.js';
+
 const getPhotographers = async () => {
   try {
     const photographersJson = await getAllDataService();
