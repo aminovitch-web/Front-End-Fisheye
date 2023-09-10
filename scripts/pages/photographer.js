@@ -149,7 +149,7 @@ const openLightBox = () => {
     } else if (videoElement) {
       const videoSrc = videoElement.getAttribute('src')
       const title = mediaTitle.textContent
-      mediaContent = `<video src="${videoSrc}" controls="true" class="lightbox-video"></video>
+      mediaContent = `<video src="${videoSrc}" autoplay controls="true" class="lightbox-video"></video>
                             <span class="lightboxTitle">${title}</span>`
     }
 
