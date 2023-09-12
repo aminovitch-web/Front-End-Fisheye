@@ -38,7 +38,7 @@ const mediaFactory = (data) => {
     const buttonTag = document.createElement('button')
     buttonTag.classList.add('like')
     buttonTag.classList.add('like-button')
-    buttonTag.setAttribute('aria-label', likes+' like , appuyer pour aimer le contenu')
+    buttonTag.setAttribute('aria-label', likes + ' like , appuyer pour aimer le contenu')
     buttonTag.textContent = `${likes} ♥`
 
     buttonTag.addEventListener('click', (event) => {

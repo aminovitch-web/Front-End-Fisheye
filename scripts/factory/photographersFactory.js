@@ -53,24 +53,24 @@ const photographersFactory = (data) => {
     const photographInfos = document.createElement('div')
     photographInfos.classList.add('photograph__infos')
     const photographName = document.createElement('h2')
-    photographName.setAttribute('aria-label', ` Nom du photographe ${name}`);
-    photographName.setAttribute('tabIndex','0');
+    photographName.setAttribute('aria-label', ` Nom du photographe ${name}`)
+    photographName.setAttribute('tabIndex', '0')
     photographName.textContent = name
     const photographCity = document.createElement('span')
-    photographCity.setAttribute('aria-label', ` ville ${city} pays ${country}`);
-    photographCity.setAttribute('tabIndex','0');
-    photographCity.textContent = city+","+country;
+    photographCity.setAttribute('aria-label', ` ville ${city} pays ${country}`)
+    photographCity.setAttribute('tabIndex', '0')
+    photographCity.textContent = city + ',' + country
     const photographTagLine = document.createElement('p')
-    photographTagLine.setAttribute('aria-label', ` texte de présentation ${tagline}`);
-    photographTagLine.setAttribute('tabIndex','0');
+    photographTagLine.setAttribute('aria-label', ` texte de présentation ${tagline}`)
+    photographTagLine.setAttribute('tabIndex', '0')
     photographTagLine.textContent = tagline
 
     const contactButton = document.createElement('button')
     contactButton.classList.add('contact_button')
     contactButton.id = 'contact_button'
     const msgButton = document.createTextNode('contactez moi')
-    contactButton.setAttribute('aria-label', ` contactez ${name}`);
-    contactButton.setAttribute('tabIndex','0');
+    contactButton.setAttribute('aria-label', ` contactez ${name}`)
+    contactButton.setAttribute('tabIndex', '0')
     contactButton.appendChild(msgButton)
     initializeForm(contactButton, name)
     const photographPortrait = document.createElement('div')
