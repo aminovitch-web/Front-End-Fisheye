@@ -271,7 +271,7 @@ const displayPhotographerCard = async (id) => {
 
     const photographerCard = document.createElement('section')
     photographerCard.classList.add('card-informations')
-    photographerCard.setAttribute('aria-label', 'total like et prix')
+    photographerCard.setAttribute('aria-label', `${totalLikes} likes au total, ${photographerPrice}€ par jour`) 
 
     const likesSpan = document.createElement('span')
     likesSpan.classList.add('total-likes')
@@ -283,6 +283,9 @@ const displayPhotographerCard = async (id) => {
     photographerCard.appendChild(likesSpan)
     photographerCard.appendChild(priceSpan)
 
+
+    photographerCard.tabIndex = 0;
+
     const cardSection = document.querySelector('.card')
     cardSection.appendChild(photographerCard)
 
@@ -293,6 +296,7 @@ const displayPhotographerCard = async (id) => {
     console.log(error)
   }
 }
+
 
 const init = async () => {
   try {
