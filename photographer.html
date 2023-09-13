@@ -49,29 +49,31 @@
                 <h2 class="informationContact"></h2>
                 <img  aria-label="fermer le formulaire" src="assets/icons/close.svg" id="close_modal" />
             </header>
-            <form method="post" action="photographer.html" aria-label="Formulaire de contact du photographe">
+            <form method="post"  action ="#" onsubmit ="event.preventDefault(); return validateForm();" aria-label="Formulaire de contact du photographe">
                 <div>
                     <label for="prenom">Prénom</label>
-                    <input type="text" id="prenom" name="prenom" required aria-label="Indiquer son prénom" />
+                    <input type="text" id="prenom" name="prenom" required aria-label="Indiquer son prénom" pattern="[A-Za-z]{2,10}" title="Le prénom doit contenir entre 2 et 10 caractères alphabétiques." />
                 </div>
                 <div>
                     <label for="nom">Nom</label>
-                    <input type="text" id="nom" name="nom" required aria-label="Indiquer son nom" />
+                    <input type="text" id="nom" name="nom" required aria-label="Indiquer son nom" pattern="[A-Za-z]{2,10}" title="Le nom doit contenir entre 2 et 10 caractères alphabétiques." />
                 </div>
                 <div>
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required aria-label="Indiquer son email" />
+                    <input type="email" id="email" name="email" required aria-label="Indiquer son email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Veuillez saisir une adresse e-mail valide." />
                 </div>
                 <div>
                     <label for="message">Votre message</label>
-                    <textarea id="message" name="message" aria-label="Indiquer votre message"></textarea>
+                    <textarea id="message" name="message" required aria-label="Indiquer votre message" minlength="10" maxlength="500"></textarea>
                 </div>
                 <button class="contact_button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
             </form>
+            
         </div>
     </div>
   
     <script type="module"src="scripts/pages/photographer.js"></script>
+    <script src="scripts/utils/validateForm.js"></script>
     
 
 </body>
